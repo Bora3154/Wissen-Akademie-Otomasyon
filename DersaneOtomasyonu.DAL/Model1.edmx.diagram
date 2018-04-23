@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="4fbbc7a7ba034e8988c4945b53ac1a4d" Name="Diagram1">
+        <EntityTypeShape EntityType="DersaneOtomasyonuModel1.Branslar" Width="1.5" PointX="0.75" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DersaneOtomasyonuModel1.HaftalikOdevler" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DersaneOtomasyonuModel1.OdemeVadeleri" Width="1.5" PointX="2.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DersaneOtomasyonuModel1.OgrenciKayit" Width="1.5" PointX="4.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DersaneOtomasyonuModel1.OgretmenKayit" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="DersaneOtomasyonuModel1.Siniflarr" Width="1.5" PointX="5.25" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DersaneOtomasyonuModel1.VeliKayit" Width="1.5" PointX="6.75" PointY="5.75" IsExpanded="true" />
+        <AssociationConnector Association="DersaneOtomasyonuModel1.FK_OgretmenKayit_Branslar1" ManuallyRouted="false" />
+        <AssociationConnector Association="DersaneOtomasyonuModel1.FK_Siniflarr_OgretmenKayit1" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

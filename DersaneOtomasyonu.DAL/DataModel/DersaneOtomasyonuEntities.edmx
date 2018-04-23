@@ -1,0 +1,547 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="DersaneOtomasyonuModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Branslar">
+          <Key>
+            <PropertyRef Name="IDBrans" />
+          </Key>
+          <Property Name="IDBrans" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Brans" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="HaftalikOdevlerr">
+          <Key>
+            <PropertyRef Name="HaftalikOdevID" />
+          </Key>
+          <Property Name="HaftalikOdevID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="VerilenKonu" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="VerilisTarihi" Type="datetime" />
+          <Property Name="TeslimTarihi" Type="datetime" />
+          <Property Name="VerilenNot" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OdemeVadeleri">
+          <Key>
+            <PropertyRef Name="OdemeBilgileriID" />
+          </Key>
+          <Property Name="OdemeBilgileriID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OgrenciID" Type="int" Nullable="false" />
+          <Property Name="TaksitNo" Type="tinyint" Nullable="false" />
+          <Property Name="TaksitTutari" Type="money" Nullable="false" />
+          <Property Name="VadeTarihi" Type="datetime" Nullable="false" />
+          <Property Name="Odedimi" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OgrenciiKayit">
+          <Key>
+            <PropertyRef Name="OgrenciID" />
+          </Key>
+          <Property Name="OgrenciID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="VeliID" Type="int" Nullable="false" />
+          <Property Name="HaftalikOdevID" Type="int" Nullable="false" />
+          <Property Name="SinifID" Type="int" Nullable="false" />
+          <Property Name="OgrenciAdi" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="OgrenciSoyadi" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="OgrenciNumarasi" Type="int" Nullable="false" />
+          <Property Name="OgrenciTcKimlikNo" Type="varchar" MaxLength="11" Nullable="false" />
+          <Property Name="OgrenciOKulBolumu" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="OgrenciAdresi" Type="varchar(max)" />
+          <Property Name="OgrenciPostaKodu" Type="varchar" MaxLength="10" />
+          <Property Name="OgrenciSemt" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="OgrenciSehir" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="ToplamTaksitSayisi" Type="tinyint" Nullable="false" />
+          <Property Name="OdenecekToplamTutar" Type="money" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OgretmenKayit">
+          <Key>
+            <PropertyRef Name="OgretmenID" />
+          </Key>
+          <Property Name="OgretmenID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IDBrans" Type="int" Nullable="false" />
+          <Property Name="OgretmenAdi" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="OgretmenTcKimlikNo" Type="varchar" MaxLength="11" Nullable="false" />
+          <Property Name="OgretmenCinsiyet" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="OgretmenAdres" Type="varchar(max)" Nullable="false" />
+          <Property Name="OgretmenPostaKodu" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="OgretmenSemt" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="OgretmenSehir" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="OgretmenEvTel" Type="varchar" MaxLength="11" />
+          <Property Name="OgretmenCepTel" Type="varchar" MaxLength="11" Nullable="false" />
+          <Property Name="OgretmenMailAdresi" Type="varchar" MaxLength="50" />
+          <Property Name="OgretmenMaas" Type="money" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Sinif">
+          <Key>
+            <PropertyRef Name="SinifID" />
+          </Key>
+          <Property Name="SinifID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SinifBransi" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="OgretmenID" Type="int" Nullable="false" />
+          <Property Name="DerslerinBaslangici" Type="datetime" />
+          <Property Name="DerslerinBitisi" Type="datetime" />
+        </EntityType>
+        <EntityType Name="VeliKayit">
+          <Key>
+            <PropertyRef Name="VeliID" />
+          </Key>
+          <Property Name="VeliID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="VeliAdiSoyadi" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="VeliTcKimlikNo" Type="varchar" MaxLength="11" Nullable="false" />
+          <Property Name="VeliYakinligi" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="VeliİsAdresi" Type="varchar(max)" />
+          <Property Name="VeliEvAdresi" Type="varchar(max)" />
+          <Property Name="VeliPostaKodu" Type="varchar" MaxLength="10" />
+          <Property Name="VeliCepTel" Type="varchar" MaxLength="11" Nullable="false" />
+          <Property Name="VeliMailAdresi" Type="varchar" MaxLength="50" />
+          <Property Name="VeliEgitimDurumu" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="VeliGelirDuzeyi" Type="money" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_OdemeVadeleri_OgrenciiKayit">
+          <End Role="OgrenciiKayit" Type="Self.OgrenciiKayit" Multiplicity="1" />
+          <End Role="OdemeVadeleri" Type="Self.OdemeVadeleri" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OgrenciiKayit">
+              <PropertyRef Name="OgrenciID" />
+            </Principal>
+            <Dependent Role="OdemeVadeleri">
+              <PropertyRef Name="OgrenciID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OgrenciiKayit_HaftalikOdevlerr">
+          <End Role="HaftalikOdevlerr" Type="Self.HaftalikOdevlerr" Multiplicity="1" />
+          <End Role="OgrenciiKayit" Type="Self.OgrenciiKayit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HaftalikOdevlerr">
+              <PropertyRef Name="HaftalikOdevID" />
+            </Principal>
+            <Dependent Role="OgrenciiKayit">
+              <PropertyRef Name="HaftalikOdevID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OgrenciiKayit_Sinif">
+          <End Role="Sinif" Type="Self.Sinif" Multiplicity="1" />
+          <End Role="OgrenciiKayit" Type="Self.OgrenciiKayit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sinif">
+              <PropertyRef Name="SinifID" />
+            </Principal>
+            <Dependent Role="OgrenciiKayit">
+              <PropertyRef Name="SinifID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OgrenciiKayit_VeliKayit">
+          <End Role="VeliKayit" Type="Self.VeliKayit" Multiplicity="1" />
+          <End Role="OgrenciiKayit" Type="Self.OgrenciiKayit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VeliKayit">
+              <PropertyRef Name="VeliID" />
+            </Principal>
+            <Dependent Role="OgrenciiKayit">
+              <PropertyRef Name="VeliID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OgretmenKayit_Branslar">
+          <End Role="Branslar" Type="Self.Branslar" Multiplicity="1" />
+          <End Role="OgretmenKayit" Type="Self.OgretmenKayit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Branslar">
+              <PropertyRef Name="IDBrans" />
+            </Principal>
+            <Dependent Role="OgretmenKayit">
+              <PropertyRef Name="IDBrans" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sinif_OgretmenKayit">
+          <End Role="OgretmenKayit" Type="Self.OgretmenKayit" Multiplicity="1" />
+          <End Role="Sinif" Type="Self.Sinif" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OgretmenKayit">
+              <PropertyRef Name="OgretmenID" />
+            </Principal>
+            <Dependent Role="Sinif">
+              <PropertyRef Name="OgretmenID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DersaneOtomasyonuModelStoreContainer">
+          <EntitySet Name="Branslar" EntityType="Self.Branslar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HaftalikOdevlerr" EntityType="Self.HaftalikOdevlerr" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OdemeVadeleri" EntityType="Self.OdemeVadeleri" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OgrenciiKayit" EntityType="Self.OgrenciiKayit" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OgretmenKayit" EntityType="Self.OgretmenKayit" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sinif" EntityType="Self.Sinif" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VeliKayit" EntityType="Self.VeliKayit" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_OdemeVadeleri_OgrenciiKayit" Association="Self.FK_OdemeVadeleri_OgrenciiKayit">
+            <End Role="OgrenciiKayit" EntitySet="OgrenciiKayit" />
+            <End Role="OdemeVadeleri" EntitySet="OdemeVadeleri" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OgrenciiKayit_HaftalikOdevlerr" Association="Self.FK_OgrenciiKayit_HaftalikOdevlerr">
+            <End Role="HaftalikOdevlerr" EntitySet="HaftalikOdevlerr" />
+            <End Role="OgrenciiKayit" EntitySet="OgrenciiKayit" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OgrenciiKayit_Sinif" Association="Self.FK_OgrenciiKayit_Sinif">
+            <End Role="Sinif" EntitySet="Sinif" />
+            <End Role="OgrenciiKayit" EntitySet="OgrenciiKayit" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OgrenciiKayit_VeliKayit" Association="Self.FK_OgrenciiKayit_VeliKayit">
+            <End Role="VeliKayit" EntitySet="VeliKayit" />
+            <End Role="OgrenciiKayit" EntitySet="OgrenciiKayit" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OgretmenKayit_Branslar" Association="Self.FK_OgretmenKayit_Branslar">
+            <End Role="Branslar" EntitySet="Branslar" />
+            <End Role="OgretmenKayit" EntitySet="OgretmenKayit" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sinif_OgretmenKayit" Association="Self.FK_Sinif_OgretmenKayit">
+            <End Role="OgretmenKayit" EntitySet="OgretmenKayit" />
+            <End Role="Sinif" EntitySet="Sinif" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DersaneOtomasyonuModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Branslar">
+          <Key>
+            <PropertyRef Name="IDBrans" />
+          </Key>
+          <Property Name="IDBrans" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Brans" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="OgretmenKayit" Relationship="Self.FK_OgretmenKayit_Branslar" FromRole="Branslar" ToRole="OgretmenKayit" />
+        </EntityType>
+        <EntityType Name="HaftalikOdevlerr">
+          <Key>
+            <PropertyRef Name="HaftalikOdevID" />
+          </Key>
+          <Property Name="HaftalikOdevID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="VerilenKonu" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="VerilisTarihi" Type="DateTime" Precision="3" />
+          <Property Name="TeslimTarihi" Type="DateTime" Precision="3" />
+          <Property Name="VerilenNot" Type="Byte" Nullable="false" />
+          <NavigationProperty Name="OgrenciiKayit" Relationship="Self.FK_OgrenciiKayit_HaftalikOdevlerr" FromRole="HaftalikOdevlerr" ToRole="OgrenciiKayit" />
+        </EntityType>
+        <EntityType Name="OdemeVadeleri">
+          <Key>
+            <PropertyRef Name="OdemeBilgileriID" />
+          </Key>
+          <Property Name="OdemeBilgileriID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OgrenciID" Type="Int32" Nullable="false" />
+          <Property Name="TaksitNo" Type="Byte" Nullable="false" />
+          <Property Name="TaksitTutari" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="VadeTarihi" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Odedimi" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="OgrenciiKayit" Relationship="Self.FK_OdemeVadeleri_OgrenciiKayit" FromRole="OdemeVadeleri" ToRole="OgrenciiKayit" />
+        </EntityType>
+        <EntityType Name="OgrenciiKayit">
+          <Key>
+            <PropertyRef Name="OgrenciID" />
+          </Key>
+          <Property Name="OgrenciID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="VeliID" Type="Int32" Nullable="false" />
+          <Property Name="HaftalikOdevID" Type="Int32" Nullable="false" />
+          <Property Name="SinifID" Type="Int32" Nullable="false" />
+          <Property Name="OgrenciAdi" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="OgrenciSoyadi" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="OgrenciNumarasi" Type="Int32" Nullable="false" />
+          <Property Name="OgrenciTcKimlikNo" Type="String" MaxLength="11" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="OgrenciOKulBolumu" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="OgrenciAdresi" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="OgrenciPostaKodu" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="OgrenciSemt" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="OgrenciSehir" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ToplamTaksitSayisi" Type="Byte" Nullable="false" />
+          <Property Name="OdenecekToplamTutar" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <NavigationProperty Name="HaftalikOdevlerr" Relationship="Self.FK_OgrenciiKayit_HaftalikOdevlerr" FromRole="OgrenciiKayit" ToRole="HaftalikOdevlerr" />
+          <NavigationProperty Name="OdemeVadeleri" Relationship="Self.FK_OdemeVadeleri_OgrenciiKayit" FromRole="OgrenciiKayit" ToRole="OdemeVadeleri" />
+          <NavigationProperty Name="Sinif" Relationship="Self.FK_OgrenciiKayit_Sinif" FromRole="OgrenciiKayit" ToRole="Sinif" />
+          <NavigationProperty Name="VeliKayit" Relationship="Self.FK_OgrenciiKayit_VeliKayit" FromRole="OgrenciiKayit" ToRole="VeliKayit" />
+        </EntityType>
+        <EntityType Name="OgretmenKayit">
+          <Key>
+            <PropertyRef Name="OgretmenID" />
+          </Key>
+          <Property Name="OgretmenID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IDBrans" Type="Int32" Nullable="false" />
+          <Property Name="OgretmenAdi" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="OgretmenTcKimlikNo" Type="String" MaxLength="11" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="OgretmenCinsiyet" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="OgretmenAdres" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="OgretmenPostaKodu" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="OgretmenSemt" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="OgretmenSehir" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="OgretmenEvTel" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Name="OgretmenCepTel" Type="String" MaxLength="11" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="OgretmenMailAdresi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="OgretmenMaas" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <NavigationProperty Name="Branslar" Relationship="Self.FK_OgretmenKayit_Branslar" FromRole="OgretmenKayit" ToRole="Branslar" />
+          <NavigationProperty Name="Sinif" Relationship="Self.FK_Sinif_OgretmenKayit" FromRole="OgretmenKayit" ToRole="Sinif" />
+        </EntityType>
+        <EntityType Name="Sinif">
+          <Key>
+            <PropertyRef Name="SinifID" />
+          </Key>
+          <Property Name="SinifID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SinifBransi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="OgretmenID" Type="Int32" Nullable="false" />
+          <Property Name="DerslerinBaslangici" Type="DateTime" Precision="3" />
+          <Property Name="DerslerinBitisi" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="OgrenciiKayit" Relationship="Self.FK_OgrenciiKayit_Sinif" FromRole="Sinif" ToRole="OgrenciiKayit" />
+          <NavigationProperty Name="OgretmenKayit" Relationship="Self.FK_Sinif_OgretmenKayit" FromRole="Sinif" ToRole="OgretmenKayit" />
+        </EntityType>
+        <EntityType Name="VeliKayit">
+          <Key>
+            <PropertyRef Name="VeliID" />
+          </Key>
+          <Property Name="VeliID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="VeliAdiSoyadi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="VeliTcKimlikNo" Type="String" MaxLength="11" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="VeliYakinligi" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="VeliİsAdresi" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="VeliEvAdresi" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="VeliPostaKodu" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="VeliCepTel" Type="String" MaxLength="11" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="VeliMailAdresi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="VeliEgitimDurumu" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="VeliGelirDuzeyi" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <NavigationProperty Name="OgrenciiKayit" Relationship="Self.FK_OgrenciiKayit_VeliKayit" FromRole="VeliKayit" ToRole="OgrenciiKayit" />
+        </EntityType>
+        <Association Name="FK_OgretmenKayit_Branslar">
+          <End Role="Branslar" Type="Self.Branslar" Multiplicity="1" />
+          <End Role="OgretmenKayit" Type="Self.OgretmenKayit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Branslar">
+              <PropertyRef Name="IDBrans" />
+            </Principal>
+            <Dependent Role="OgretmenKayit">
+              <PropertyRef Name="IDBrans" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OgrenciiKayit_HaftalikOdevlerr">
+          <End Role="HaftalikOdevlerr" Type="Self.HaftalikOdevlerr" Multiplicity="1" />
+          <End Role="OgrenciiKayit" Type="Self.OgrenciiKayit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HaftalikOdevlerr">
+              <PropertyRef Name="HaftalikOdevID" />
+            </Principal>
+            <Dependent Role="OgrenciiKayit">
+              <PropertyRef Name="HaftalikOdevID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OdemeVadeleri_OgrenciiKayit">
+          <End Role="OgrenciiKayit" Type="Self.OgrenciiKayit" Multiplicity="1" />
+          <End Role="OdemeVadeleri" Type="Self.OdemeVadeleri" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OgrenciiKayit">
+              <PropertyRef Name="OgrenciID" />
+            </Principal>
+            <Dependent Role="OdemeVadeleri">
+              <PropertyRef Name="OgrenciID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OgrenciiKayit_Sinif">
+          <End Role="Sinif" Type="Self.Sinif" Multiplicity="1" />
+          <End Role="OgrenciiKayit" Type="Self.OgrenciiKayit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sinif">
+              <PropertyRef Name="SinifID" />
+            </Principal>
+            <Dependent Role="OgrenciiKayit">
+              <PropertyRef Name="SinifID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OgrenciiKayit_VeliKayit">
+          <End Role="VeliKayit" Type="Self.VeliKayit" Multiplicity="1" />
+          <End Role="OgrenciiKayit" Type="Self.OgrenciiKayit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VeliKayit">
+              <PropertyRef Name="VeliID" />
+            </Principal>
+            <Dependent Role="OgrenciiKayit">
+              <PropertyRef Name="VeliID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sinif_OgretmenKayit">
+          <End Role="OgretmenKayit" Type="Self.OgretmenKayit" Multiplicity="1" />
+          <End Role="Sinif" Type="Self.Sinif" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OgretmenKayit">
+              <PropertyRef Name="OgretmenID" />
+            </Principal>
+            <Dependent Role="Sinif">
+              <PropertyRef Name="OgretmenID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DersaneOtomasyonuEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Branslar" EntityType="Self.Branslar" />
+          <EntitySet Name="HaftalikOdevlerr" EntityType="Self.HaftalikOdevlerr" />
+          <EntitySet Name="OdemeVadeleri" EntityType="Self.OdemeVadeleri" />
+          <EntitySet Name="OgrenciiKayit" EntityType="Self.OgrenciiKayit" />
+          <EntitySet Name="OgretmenKayit" EntityType="Self.OgretmenKayit" />
+          <EntitySet Name="Sinif" EntityType="Self.Sinif" />
+          <EntitySet Name="VeliKayit" EntityType="Self.VeliKayit" />
+          <AssociationSet Name="FK_OgretmenKayit_Branslar" Association="Self.FK_OgretmenKayit_Branslar">
+            <End Role="Branslar" EntitySet="Branslar" />
+            <End Role="OgretmenKayit" EntitySet="OgretmenKayit" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OgrenciiKayit_HaftalikOdevlerr" Association="Self.FK_OgrenciiKayit_HaftalikOdevlerr">
+            <End Role="HaftalikOdevlerr" EntitySet="HaftalikOdevlerr" />
+            <End Role="OgrenciiKayit" EntitySet="OgrenciiKayit" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OdemeVadeleri_OgrenciiKayit" Association="Self.FK_OdemeVadeleri_OgrenciiKayit">
+            <End Role="OgrenciiKayit" EntitySet="OgrenciiKayit" />
+            <End Role="OdemeVadeleri" EntitySet="OdemeVadeleri" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OgrenciiKayit_Sinif" Association="Self.FK_OgrenciiKayit_Sinif">
+            <End Role="Sinif" EntitySet="Sinif" />
+            <End Role="OgrenciiKayit" EntitySet="OgrenciiKayit" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OgrenciiKayit_VeliKayit" Association="Self.FK_OgrenciiKayit_VeliKayit">
+            <End Role="VeliKayit" EntitySet="VeliKayit" />
+            <End Role="OgrenciiKayit" EntitySet="OgrenciiKayit" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sinif_OgretmenKayit" Association="Self.FK_Sinif_OgretmenKayit">
+            <End Role="OgretmenKayit" EntitySet="OgretmenKayit" />
+            <End Role="Sinif" EntitySet="Sinif" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DersaneOtomasyonuModelStoreContainer" CdmEntityContainer="DersaneOtomasyonuEntities1">
+          <EntitySetMapping Name="Branslar">
+            <EntityTypeMapping TypeName="DersaneOtomasyonuModel.Branslar">
+              <MappingFragment StoreEntitySet="Branslar">
+                <ScalarProperty Name="IDBrans" ColumnName="IDBrans" />
+                <ScalarProperty Name="Brans" ColumnName="Brans" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HaftalikOdevlerr">
+            <EntityTypeMapping TypeName="DersaneOtomasyonuModel.HaftalikOdevlerr">
+              <MappingFragment StoreEntitySet="HaftalikOdevlerr">
+                <ScalarProperty Name="HaftalikOdevID" ColumnName="HaftalikOdevID" />
+                <ScalarProperty Name="VerilenKonu" ColumnName="VerilenKonu" />
+                <ScalarProperty Name="VerilisTarihi" ColumnName="VerilisTarihi" />
+                <ScalarProperty Name="TeslimTarihi" ColumnName="TeslimTarihi" />
+                <ScalarProperty Name="VerilenNot" ColumnName="VerilenNot" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OdemeVadeleri">
+            <EntityTypeMapping TypeName="DersaneOtomasyonuModel.OdemeVadeleri">
+              <MappingFragment StoreEntitySet="OdemeVadeleri">
+                <ScalarProperty Name="OdemeBilgileriID" ColumnName="OdemeBilgileriID" />
+                <ScalarProperty Name="OgrenciID" ColumnName="OgrenciID" />
+                <ScalarProperty Name="TaksitNo" ColumnName="TaksitNo" />
+                <ScalarProperty Name="TaksitTutari" ColumnName="TaksitTutari" />
+                <ScalarProperty Name="VadeTarihi" ColumnName="VadeTarihi" />
+                <ScalarProperty Name="Odedimi" ColumnName="Odedimi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OgrenciiKayit">
+            <EntityTypeMapping TypeName="DersaneOtomasyonuModel.OgrenciiKayit">
+              <MappingFragment StoreEntitySet="OgrenciiKayit">
+                <ScalarProperty Name="OgrenciID" ColumnName="OgrenciID" />
+                <ScalarProperty Name="VeliID" ColumnName="VeliID" />
+                <ScalarProperty Name="HaftalikOdevID" ColumnName="HaftalikOdevID" />
+                <ScalarProperty Name="SinifID" ColumnName="SinifID" />
+                <ScalarProperty Name="OgrenciAdi" ColumnName="OgrenciAdi" />
+                <ScalarProperty Name="OgrenciSoyadi" ColumnName="OgrenciSoyadi" />
+                <ScalarProperty Name="OgrenciNumarasi" ColumnName="OgrenciNumarasi" />
+                <ScalarProperty Name="OgrenciTcKimlikNo" ColumnName="OgrenciTcKimlikNo" />
+                <ScalarProperty Name="OgrenciOKulBolumu" ColumnName="OgrenciOKulBolumu" />
+                <ScalarProperty Name="OgrenciAdresi" ColumnName="OgrenciAdresi" />
+                <ScalarProperty Name="OgrenciPostaKodu" ColumnName="OgrenciPostaKodu" />
+                <ScalarProperty Name="OgrenciSemt" ColumnName="OgrenciSemt" />
+                <ScalarProperty Name="OgrenciSehir" ColumnName="OgrenciSehir" />
+                <ScalarProperty Name="ToplamTaksitSayisi" ColumnName="ToplamTaksitSayisi" />
+                <ScalarProperty Name="OdenecekToplamTutar" ColumnName="OdenecekToplamTutar" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OgretmenKayit">
+            <EntityTypeMapping TypeName="DersaneOtomasyonuModel.OgretmenKayit">
+              <MappingFragment StoreEntitySet="OgretmenKayit">
+                <ScalarProperty Name="OgretmenID" ColumnName="OgretmenID" />
+                <ScalarProperty Name="IDBrans" ColumnName="IDBrans" />
+                <ScalarProperty Name="OgretmenAdi" ColumnName="OgretmenAdi" />
+                <ScalarProperty Name="OgretmenTcKimlikNo" ColumnName="OgretmenTcKimlikNo" />
+                <ScalarProperty Name="OgretmenCinsiyet" ColumnName="OgretmenCinsiyet" />
+                <ScalarProperty Name="OgretmenAdres" ColumnName="OgretmenAdres" />
+                <ScalarProperty Name="OgretmenPostaKodu" ColumnName="OgretmenPostaKodu" />
+                <ScalarProperty Name="OgretmenSemt" ColumnName="OgretmenSemt" />
+                <ScalarProperty Name="OgretmenSehir" ColumnName="OgretmenSehir" />
+                <ScalarProperty Name="OgretmenEvTel" ColumnName="OgretmenEvTel" />
+                <ScalarProperty Name="OgretmenCepTel" ColumnName="OgretmenCepTel" />
+                <ScalarProperty Name="OgretmenMailAdresi" ColumnName="OgretmenMailAdresi" />
+                <ScalarProperty Name="OgretmenMaas" ColumnName="OgretmenMaas" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sinif">
+            <EntityTypeMapping TypeName="DersaneOtomasyonuModel.Sinif">
+              <MappingFragment StoreEntitySet="Sinif">
+                <ScalarProperty Name="SinifID" ColumnName="SinifID" />
+                <ScalarProperty Name="SinifBransi" ColumnName="SinifBransi" />
+                <ScalarProperty Name="OgretmenID" ColumnName="OgretmenID" />
+                <ScalarProperty Name="DerslerinBaslangici" ColumnName="DerslerinBaslangici" />
+                <ScalarProperty Name="DerslerinBitisi" ColumnName="DerslerinBitisi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VeliKayit">
+            <EntityTypeMapping TypeName="DersaneOtomasyonuModel.VeliKayit">
+              <MappingFragment StoreEntitySet="VeliKayit">
+                <ScalarProperty Name="VeliID" ColumnName="VeliID" />
+                <ScalarProperty Name="VeliAdiSoyadi" ColumnName="VeliAdiSoyadi" />
+                <ScalarProperty Name="VeliTcKimlikNo" ColumnName="VeliTcKimlikNo" />
+                <ScalarProperty Name="VeliYakinligi" ColumnName="VeliYakinligi" />
+                <ScalarProperty Name="VeliİsAdresi" ColumnName="VeliİsAdresi" />
+                <ScalarProperty Name="VeliEvAdresi" ColumnName="VeliEvAdresi" />
+                <ScalarProperty Name="VeliPostaKodu" ColumnName="VeliPostaKodu" />
+                <ScalarProperty Name="VeliCepTel" ColumnName="VeliCepTel" />
+                <ScalarProperty Name="VeliMailAdresi" ColumnName="VeliMailAdresi" />
+                <ScalarProperty Name="VeliEgitimDurumu" ColumnName="VeliEgitimDurumu" />
+                <ScalarProperty Name="VeliGelirDuzeyi" ColumnName="VeliGelirDuzeyi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
